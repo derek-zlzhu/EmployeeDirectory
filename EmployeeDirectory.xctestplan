@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "CA158DE9-3DF8-4DF1-AD28-127D2444C2D7",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:EmployeeDirectory.xcodeproj",
+      "identifier" : "316731DB2BF437F50012DDD7",
+      "name" : "EmployeeDirectory"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:EmployeeDirectory.xcodeproj",
+        "identifier" : "316731EB2BF437F70012DDD7",
+        "name" : "EmployeeDirectoryTests"
+      }
+    }
+  ],
+  "version" : 1
+}

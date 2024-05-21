@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ApiServiceUrl</key>
+	<string>https://s3.amazonaws.com/sq-mobile-interview/employees.json</string>
+	<key>ImageMemoryCacheCount</key>
+	<real>100</real>
+	<key>ImageFileCacheSize</key>
+	<real>1073741824</real>
+	<key>RequestTimeout</key>
+	<integer>10</integer>
+</dict>
+</plist>
