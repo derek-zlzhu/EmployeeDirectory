@@ -17,6 +17,7 @@ final class EmployeeTabViewModelTests: XCTestCase {
   override func setUp() {
     UserDefaults.standard.removeObject(forKey: "seenOnboarding")
     sut = EmployeeTabViewModel()
+    sut.initProperyValueFromDefaults()
   }
 
   override func tearDown() {
@@ -53,13 +54,13 @@ final class EmployeeTabViewModelTests: XCTestCase {
 
   @MainActor 
   func testShouldLoadOnboardingAfterUpdate() {
-    sut.showedOnboarding()
+    sut.hideOnboardingView()
     XCTAssertEqual(sut.shouldLoadOnboarding, false)
   }
 
   @MainActor
   func testShouldLoadMainTabAfterUpdate() {
-    sut.showedOnboarding()
+    sut.hideOnboardingView()
     XCTAssertEqual(sut.shouldLoadMainTab, true)
   }
 }

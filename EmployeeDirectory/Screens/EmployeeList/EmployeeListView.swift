@@ -12,30 +12,41 @@ struct EmployeeListView: View {
   @StateObject var viewModel = EmployeeListViewModel()
 
   var body: some View {
-    if viewModel.isLoading {
-      ProgressView()
-        .progressViewStyle(CircularProgressViewStyle(tint: .gray))
-        .scaleEffect(2)
-        .offset(y: -40)
-    } else {
-      content
-        .alert(item: $viewModel.alertItem) { alertItem in
-          Alert(title: alertItem.title,
-                message: alertItem.message,
-                dismissButton: alertItem.dismissButton)
-        }
-    }
+    content
+      .task {
+        await viewModel.fetchEmployees()
+      }
+      .alert(item: $viewModel.alertItem) { alertItem in
+        Alert(title: alertItem.title,
+              message: alertItem.message,
+              dismissButton: alertItem.dismissButton)
+      }
   }
 
   var content: some View {
     NavigationView {
-      if viewModel.employees.isEmpty {
+      if viewModel.isLoading {
+        loadingProgressView
+      } else if viewModel.employListIsEmpty {
         emptyView
       } else {
         listView
       }
     }
     .navigationViewStyle(.stack)
+  }
+
+  var listView: some View {
+    List(viewModel.filteredEmployees) { employee in
+      NavigationLink(destination: EmployeeDetailView(employee: employee)) {
+        EmployeeListCell(employee: employee)
+      }
+    }
+    .refreshable {
+      await viewModel.refreshEmployees()
+    }
+    .searchable(text: $viewModel.textToSearch, placement: .navigationBarDrawer(displayMode: .always))
+    .navigationTitle("Employees")
   }
 
   var emptyView: some View {
@@ -53,19 +64,15 @@ struct EmployeeListView: View {
       Spacer()
     }
     .padding(30)
+    .navigationTitle("Employees")
   }
 
-  var listView: some View {
-    List(viewModel.filteredEmployees) { employee in
-      NavigationLink(destination: EmployeeDetailView(employee: employee)) {
-        EmployeeListCell(employee: employee)
-      }
-    }
-    .refreshable {
-      await viewModel.fetchEmployees()
-    }
-    .navigationTitle("Employees")
-    .searchable(text: $viewModel.textToSearch, placement: .navigationBarDrawer(displayMode: .always))
+  var loadingProgressView: some View {
+    ProgressView()
+      .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+      .scaleEffect(2)
+      .offset(y: -40)
+      .navigationTitle("Employees")
   }
 }
 

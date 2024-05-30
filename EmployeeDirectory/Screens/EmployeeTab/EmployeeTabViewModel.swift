@@ -9,14 +9,10 @@ import Foundation
 
 final class EmployeeTabViewModel: ObservableObject {
 
+  @Published private(set) var shouldLoadMainTab = false
   @Published var shouldLoadOnboarding = false
-  @Published var shouldLoadMainTab = false
 
-  init() {
-    initProperyValueFromDefaults()
-  }
-
-  private func initProperyValueFromDefaults() {
+  func initProperyValueFromDefaults() {
     let seenOnbarding = UserDefaults.standard.bool(forKey: kSeenOnboardingKey)
 
     DispatchQueue.main.async { [weak self] in
@@ -26,7 +22,7 @@ final class EmployeeTabViewModel: ObservableObject {
   }
 
   @MainActor
-  func showedOnboarding() {
+  func hideOnboardingView() {
     UserDefaults.standard.set(true, forKey: kSeenOnboardingKey)
     UserDefaults.standard.synchronize()
 

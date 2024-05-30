@@ -11,29 +11,27 @@ struct EmployeeListCell: View {
 
   let employee: Employee
 
+  @StateObject var viewModel = EmployeeListCellViewModel()
+
   var body: some View {
     HStack(spacing: 10) {
-      AsyncImage(url: URL(string: employee.photoUrlSmall!)) { image in
-        image
-          .resizable()
-          .aspectRatio(contentMode: .fill)
-          .frame(width: 90, height: 90)
-          .cornerRadius(8)
-      } placeholder: {
-        Image(uiImage: ImageManager.placeholder)
-          .resizable()
-          .aspectRatio(contentMode: .fit)
-          .frame(width: 90, height: 90)
-          .cornerRadius(8)
-      }
-      .padding(.vertical, 8)
+      Image(uiImage: viewModel.image)
+        .resizable()
+        .scaledToFill()
+        .frame(width: 90, height: 90)
+        .cornerRadius(8)
+        .clipped()
+        .foregroundColor(Color(UIColor.lightGray))
+        .task {
+          await viewModel.setup(employee: employee)
+        }
 
       VStack(alignment: .leading, spacing: 5) {
-        Text(employee.fullName)
+        Text(viewModel.employeeName)
           .font(.title2)
           .fontWeight(.medium)
 
-        Text(employee.team)
+        Text(viewModel.employeeTeam)
           .foregroundColor(.secondary)
           .fontWeight(.semibold)
       }

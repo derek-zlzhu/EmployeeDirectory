@@ -20,6 +20,8 @@ struct SettingsView: View {
           KeyValueItemView(itemKey: Text("Bundle Version: "), itemValue: Text(viewModel.bundleVersion))
           KeyValueItemView(itemKey: Text("Creator Name: "), itemValue: Text(viewModel.creatorName))
 
+          resetCacheView
+
           Spacer()
         }
         .padding(.horizontal, 22)
@@ -28,6 +30,23 @@ struct SettingsView: View {
       .navigationTitle("Settings")
     }
     .navigationViewStyle(.stack)
+    .task {
+      viewModel.retriveBundleInfos()
+    }
+  }
+
+  var resetCacheView: some View {
+    Button {
+      viewModel.resetLocalCache()
+    } label: {
+      Text("Reset local cache")
+    }
+    .padding(.top, 44)
+    .alert(item: $viewModel.alertItem) { alertItem in
+      Alert(title: alertItem.title,
+            message: alertItem.message,
+            dismissButton: alertItem.dismissButton)
+    }
   }
 }
 

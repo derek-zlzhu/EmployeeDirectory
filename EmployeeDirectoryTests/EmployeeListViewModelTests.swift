@@ -25,6 +25,8 @@ final class EmployeeListViewModelTests: XCTestCase {
   @MainActor
   func testFetchEmployeesSuccess() {
     let sut = EmployeeListViewModel(employeeService: MockEmployeeService())
+    Task { await sut.fetchEmployees() }
+
     let expectationSuccess = self.expectation(description: "Fetch Employees Success")
 
     sut.$employees
@@ -45,6 +47,8 @@ final class EmployeeListViewModelTests: XCTestCase {
   @MainActor
   func testFetchEmployeesInvalideUrl() {
     let sut1 = EmployeeListViewModel(employeeService: MockEmployeeInvalidURLService())
+    Task { await sut1.fetchEmployees() }
+
     let expectationInvalidURL = self.expectation(description: "Fetch Employees invalide Url")
 
     sut1.$alertItem
@@ -62,6 +66,8 @@ final class EmployeeListViewModelTests: XCTestCase {
   @MainActor
   func testFetchEmployeesInvalideData() {
     let sut2 = EmployeeListViewModel(employeeService: MockEmployeeInvalidDataService())
+    Task { await sut2.fetchEmployees() }
+
     let expectationInvalidData = self.expectation(description: "Fetch Employees invalide Data")
 
     sut2.$alertItem
@@ -79,6 +85,8 @@ final class EmployeeListViewModelTests: XCTestCase {
   @MainActor
   func testFetchEmployeesInvalideResponse() {
     let sut3 = EmployeeListViewModel(employeeService: MockEmployeeInvalidResponseService())
+    Task { await sut3.fetchEmployees() }
+
     let expectationInvalidResponse = self.expectation(description: "Fetch Employees invalide Response")
 
     sut3.$alertItem
@@ -96,6 +104,8 @@ final class EmployeeListViewModelTests: XCTestCase {
   @MainActor
   func testFetchEmployeesGeneralFail() {
     let sut4 = EmployeeListViewModel(employeeService: MockEmployeeGeneralErrorService())
+    Task { await sut4.fetchEmployees() }
+
     let expectationFail = self.expectation(description: "Fetch Employees General Fail")
 
     sut4.$alertItem
@@ -112,6 +122,8 @@ final class EmployeeListViewModelTests: XCTestCase {
 
   @MainActor
   func testFilterNothingEmployees() {
+    Task { await sut.fetchEmployees() }
+
     let expectationSuccess = self.expectation(description: "Filter Nothing Employees")
 
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
@@ -128,6 +140,8 @@ final class EmployeeListViewModelTests: XCTestCase {
 
   @MainActor
   func testFilterOutEmployees() {
+    Task { await sut.fetchEmployees() }
+
     let expectationSuccess = self.expectation(description: "Filter Out Employees")
 
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
@@ -143,6 +157,8 @@ final class EmployeeListViewModelTests: XCTestCase {
 
   @MainActor
   func testFilterIncludeEmployees() {
+    Task { await sut.fetchEmployees() }
+
     let expectationSuccess = self.expectation(description: "Filter Include Employees")
 
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in

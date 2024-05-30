@@ -15,6 +15,7 @@ final class SettingsViewModelTests: XCTestCase {
 
   override func setUp() {
     sut = SettingsViewModel.sharedPreview
+    sut.retriveBundleInfos()
   }
 
   override func tearDown() {
@@ -35,6 +36,13 @@ final class SettingsViewModelTests: XCTestCase {
 
   func testCreatorName() {
     XCTAssertEqual(sut.creatorName, "Derek Zhu")
+  }
+
+  func testResetCache() {
+    sut.resetLocalCache()
+
+    let seenOnbarding = UserDefaults.standard.bool(forKey: "seenOnboarding")
+    XCTAssertEqual(seenOnbarding, false)
   }
 
 }

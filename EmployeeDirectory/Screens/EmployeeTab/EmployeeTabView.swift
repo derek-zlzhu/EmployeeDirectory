@@ -14,15 +14,15 @@ struct EmployeeTabView: View {
   var body: some View {
     TabView {
       if viewModel.shouldLoadMainTab {
-        EmployeeListView()
-          .tabItem{ Label("Employees", systemImage: "person.3.fill") }
-
-        SettingsView()
-          .tabItem{ Label("Settings", systemImage: "gear") }
+        EmployeeListView().tabItem { Label("Employees", systemImage: "person.3.fill") }
+        SettingsView().tabItem { Label("Settings", systemImage: "gear") }
       }
     }
     .fullScreenCover(isPresented: $viewModel.shouldLoadOnboarding) {
       OnboardingView(viewModel: viewModel)
+    }
+    .task {
+      viewModel.initProperyValueFromDefaults()
     }
   }
 }

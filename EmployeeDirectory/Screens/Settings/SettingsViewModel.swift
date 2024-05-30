@@ -10,14 +10,12 @@ import Foundation
 @MainActor
 final class SettingsViewModel: ObservableObject {
 
-  @Published var displayName: String = "Not Specified"
-  @Published var bundleIdentifier: String = ""
-  @Published var bundleVersion: String = ""
-  @Published var creatorName: String = ""
+  @Published private(set) var displayName: String = "Not Specified"
+  @Published private(set) var bundleIdentifier: String = ""
+  @Published private(set) var bundleVersion: String = ""
+  @Published private(set) var creatorName: String = ""
 
-  init() {
-    retriveBundleInfos()
-  }
+  @Published var alertItem: AlertItem?
 
   func retriveBundleInfos() {
     if let name = readFromInfoDictionary(withKey: "CFBundleDisplayName") {
@@ -35,6 +33,17 @@ final class SettingsViewModel: ObservableObject {
   private func readFromInfoDictionary(withKey key: String) -> String? {
     return Bundle.main.infoDictionary?[key] as? String
   }
+
+  func resetLocalCache() {
+    UserDefaults.standard.removeObject(forKey: kSeenOnboardingKey)
+    UserDefaults.standard.synchronize()
+
+    ImageManager.shared.resetCache()
+
+    alertItem = AlertContext.localCacheCleared
+  }
+
+  private let kSeenOnboardingKey = "seenOnboarding"
 }
 
 

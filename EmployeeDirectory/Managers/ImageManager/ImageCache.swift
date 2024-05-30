@@ -10,4 +10,6 @@ import UIKit.UIImage
 protocol ImageCache: AnyObject {
   func getImage(from url: NSURL) -> UIImage?
   func cacheImage(for url: NSURL, image: UIImage)
+
+  func resetCache()
 }

@@ -11,11 +11,19 @@ final class EmployeeListViewModel: ObservableObject {
 
   let employeeService: EmployeeService
 
-  @Published var employees: [Employee] = []
-  @Published var textToSearch = ""
+  @Published private(set) var employees: [Employee] = []
+  @Published private(set) var isLoading = true
 
+  @Published var textToSearch = ""
   @Published var alertItem: AlertItem?
-  @Published var isLoading = false
+
+  private var loaded = false
+
+  init(
+    employeeService: EmployeeService = RestfulEmployeeService()
+  ) {
+    self.employeeService = employeeService
+  }
 
   var filteredEmployees: [Employee] {
     if textToSearch.isEmpty {
@@ -29,21 +37,21 @@ final class EmployeeListViewModel: ObservableObject {
     }
   }
 
-  init(
-    employeeService: EmployeeService = RestfulEmployeeService()
-  ) {
-    self.employeeService = employeeService
-    Task { await fetchEmployees() }
+  var employListIsEmpty: Bool {
+    employees.isEmpty
   }
 
   @MainActor
   func fetchEmployees() async {
+    if loaded { return }
+
     textToSearch = ""
     isLoading = true
 
     do {
       employees = try await employeeService.fetchEmployees()
       isLoading = false
+      loaded = true
     } catch {
       if let edError = error as? EDError {
         switch edError {
@@ -58,6 +66,13 @@ final class EmployeeListViewModel: ObservableObject {
         alertItem = AlertContext.invalidResponse
       }
       isLoading = false
+      loaded = true
     }
+  }
+
+  @MainActor
+  func refreshEmployees() async {
+    loaded = false
+    await fetchEmployees()
   }
 }

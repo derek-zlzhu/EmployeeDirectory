@@ -34,4 +34,8 @@ internal struct AlertContext {
   static let invalidData = AlertItem(title: Text("Server Error"), message: Text("The data received from the server was invalid."))
 
   static let invalidResponse = AlertItem(title: Text("Server Error"), message: Text("Invalid response from the server."))
+
+  // MARK - General Alerts
+
+  static let localCacheCleared = AlertItem(title: Text("Info"), message: Text("Local cache cleared."))
 }

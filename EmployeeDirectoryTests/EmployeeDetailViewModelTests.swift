@@ -22,8 +22,8 @@ final class EmployeeDetailViewModelTests: XCTestCase {
     sut = nil
   }
 
-  func testNameEqual() {
-    sut.setEmployee(employee: Employee.sharedPreview)
+  func testNameEqual() async {
+    await sut.setup(employee: Employee.sharedPreview)
     XCTAssertEqual(sut.employeeName, "John Doe")
   }
 
@@ -31,8 +31,8 @@ final class EmployeeDetailViewModelTests: XCTestCase {
     XCTAssertEqual(sut.employeeName, "")
   }
 
-  func testTeamEqual() {
-    sut.setEmployee(employee: Employee.sharedPreview)
+  func testTeamEqual() async {
+    await sut.setup(employee: Employee.sharedPreview)
     XCTAssertEqual(sut.employeeTeam, "Retail")
   }
 
@@ -40,8 +40,8 @@ final class EmployeeDetailViewModelTests: XCTestCase {
     XCTAssertEqual(sut.employeeTeam, "")
   }
 
-  func testPositionEqual() {
-    sut.setEmployee(employee: Employee.sharedPreview)
+  func testPositionEqual() async {
+    await sut.setup(employee: Employee.sharedPreview)
     XCTAssertEqual(sut.employeePosition, "Contractor")
   }
 
@@ -49,8 +49,8 @@ final class EmployeeDetailViewModelTests: XCTestCase {
     XCTAssertEqual(sut.employeePosition, "")
   }
 
-  func testBioEqual() {
-    sut.setEmployee(employee: Employee.sharedPreview)
+  func testBioEqual() async {
+    await sut.setup(employee: Employee.sharedPreview)
     XCTAssertEqual(sut.employeeBio, "Designer on the Services team, working on the Appointments iOS and Android apps.")
   }
 
@@ -58,8 +58,8 @@ final class EmployeeDetailViewModelTests: XCTestCase {
     XCTAssertEqual(sut.employeeBio, "")
   }
 
-  func testImageUrlEqual() {
-    sut.setEmployee(employee: Employee.sharedPreview)
+  func testImageUrlEqual() async {
+    await sut.setup(employee: Employee.sharedPreview)
     XCTAssertEqual(sut.employeeLargeImageUrl, "https://s3.amazonaws.com/sq-mobile-interview/photos/077c1707-4199-415c-86b5-a29afe4e29e3/large.jpg")
   }
 

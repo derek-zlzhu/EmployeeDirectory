@@ -20,7 +20,7 @@ struct OnboardingView: View {
           .brandTextStyle()
 
         Button {
-          viewModel.showedOnboarding()
+          viewModel.hideOnboardingView()
         } label: {
           Text("Get Started")
         }

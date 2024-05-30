@@ -35,6 +35,9 @@
 		316732292BF444430012DDD7 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316732282BF444430012DDD7 /* AlertItem.swift */; };
 		3167322D2BF4869C0012DDD7 /* EmployeeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3167322C2BF4869C0012DDD7 /* EmployeeListCell.swift */; };
 		3167322F2BF48C960012DDD7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3167322E2BF48C960012DDD7 /* Localizable.xcstrings */; };
+		318334C22C08E05500A69345 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 318334C12C08E05500A69345 /* LaunchScreen.storyboard */; };
+		318334C52C08F8E500A69345 /* EmployeeListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318334C42C08F8E500A69345 /* EmployeeListCellViewModel.swift */; };
+		318334C72C09388D00A69345 /* EmployeeListCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318334C62C09388D00A69345 /* EmployeeListCellViewModelTests.swift */; };
 		31ABF0822BF5B85D001D7336 /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ABF0812BF5B85D001D7336 /* SettingsViewModelTests.swift */; };
 		31ABF0842BF5BA8A001D7336 /* EmployeeTabViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ABF0832BF5BA8A001D7336 /* EmployeeTabViewModelTests.swift */; };
 		31ABF0862BF5CA01001D7336 /* EmployeeDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ABF0852BF5CA01001D7336 /* EmployeeDetailViewModelTests.swift */; };
@@ -85,6 +88,10 @@
 		316732282BF444430012DDD7 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		3167322C2BF4869C0012DDD7 /* EmployeeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListCell.swift; sourceTree = "<group>"; };
 		3167322E2BF48C960012DDD7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		318334C12C08E05500A69345 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		318334C32C08E15200A69345 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		318334C42C08F8E500A69345 /* EmployeeListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListCellViewModel.swift; sourceTree = "<group>"; };
+		318334C62C09388D00A69345 /* EmployeeListCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListCellViewModelTests.swift; sourceTree = "<group>"; };
 		31A980102BFC264200EE8EF7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		31ABF0812BF5B85D001D7336 /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
 		31ABF0832BF5BA8A001D7336 /* EmployeeTabViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTabViewModelTests.swift; sourceTree = "<group>"; };
@@ -144,8 +151,9 @@
 		3105E2382BFA678000B7EF43 /* EmployeeTab */ = {
 			isa = PBXGroup;
 			children = (
-				316731E12BF437F50012DDD7 /* EmployeeTabView.swift */,
 				3105E24B2BFA907200B7EF43 /* EmployeeTabViewModel.swift */,
+				316731E12BF437F50012DDD7 /* EmployeeTabView.swift */,
+				3167321A2BF43C290012DDD7 /* OnboardingView.swift */,
 			);
 			path = EmployeeTab;
 			sourceTree = "<group>";
@@ -214,10 +222,9 @@
 				3167321E2BF43C630012DDD7 /* Models */,
 				316732092BF439200012DDD7 /* Screens */,
 				315BD4022BF56995007D56D5 /* Views */,
-				316731E32BF437F70012DDD7 /* Assets.xcassets */,
 				316731E52BF437F70012DDD7 /* Preview Content */,
+				318334C02C08E01B00A69345 /* Supports */,
 				3167322E2BF48C960012DDD7 /* Localizable.xcstrings */,
-				3136A5A22BF523230058F7AD /* Settings.plist */,
 			);
 			path = EmployeeDirectory;
 			sourceTree = "<group>";
@@ -237,6 +244,7 @@
 				315BD4052BF5ACAE007D56D5 /* EmployeeListViewModelTests.swift */,
 				31ABF0852BF5CA01001D7336 /* EmployeeDetailViewModelTests.swift */,
 				31ABF0812BF5B85D001D7336 /* SettingsViewModelTests.swift */,
+				318334C62C09388D00A69345 /* EmployeeListCellViewModelTests.swift */,
 			);
 			path = EmployeeDirectoryTests;
 			sourceTree = "<group>";
@@ -246,7 +254,6 @@
 			children = (
 				3105E2392BFA69E100B7EF43 /* App */,
 				3105E2382BFA678000B7EF43 /* EmployeeTab */,
-				316732192BF43C0B0012DDD7 /* Onboarding */,
 				3167320A2BF439440012DDD7 /* EmployeeList */,
 				3167320F2BF439930012DDD7 /* EmployeeDetail */,
 				316732142BF43A1C0012DDD7 /* Settings */,
@@ -257,8 +264,9 @@
 		3167320A2BF439440012DDD7 /* EmployeeList */ = {
 			isa = PBXGroup;
 			children = (
-				3167320B2BF439640012DDD7 /* EmployeeListView.swift */,
 				3167320D2BF4398A0012DDD7 /* EmployeeListViewModel.swift */,
+				3167320B2BF439640012DDD7 /* EmployeeListView.swift */,
+				318334C42C08F8E500A69345 /* EmployeeListCellViewModel.swift */,
 				3167322C2BF4869C0012DDD7 /* EmployeeListCell.swift */,
 			);
 			path = EmployeeList;
@@ -267,8 +275,8 @@
 		3167320F2BF439930012DDD7 /* EmployeeDetail */ = {
 			isa = PBXGroup;
 			children = (
-				316732102BF439D80012DDD7 /* EmployeeDetailView.swift */,
 				316732122BF439F00012DDD7 /* EmployeeDetailViewModel.swift */,
+				316732102BF439D80012DDD7 /* EmployeeDetailView.swift */,
 			);
 			path = EmployeeDetail;
 			sourceTree = "<group>";
@@ -276,18 +284,10 @@
 		316732142BF43A1C0012DDD7 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				316732152BF43A620012DDD7 /* SettingsView.swift */,
 				316732172BF43A720012DDD7 /* SettingsViewModel.swift */,
+				316732152BF43A620012DDD7 /* SettingsView.swift */,
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		316732192BF43C0B0012DDD7 /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				3167321A2BF43C290012DDD7 /* OnboardingView.swift */,
-			);
-			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		3167321E2BF43C630012DDD7 /* Models */ = {
@@ -308,6 +308,17 @@
 				3105E2372BFA667E00B7EF43 /* ImageManager */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		318334C02C08E01B00A69345 /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				318334C32C08E15200A69345 /* Info.plist */,
+				316731E32BF437F70012DDD7 /* Assets.xcassets */,
+				3136A5A22BF523230058F7AD /* Settings.plist */,
+				318334C12C08E05500A69345 /* LaunchScreen.storyboard */,
+			);
+			path = Supports;
 			sourceTree = "<group>";
 		};
 		31DAEDEF2BF7403C001984FB /* Services */ = {
@@ -404,6 +415,7 @@
 				316731E72BF437F70012DDD7 /* Preview Assets.xcassets in Resources */,
 				3136A5A32BF523230058F7AD /* Settings.plist in Resources */,
 				316731E42BF437F70012DDD7 /* Assets.xcassets in Resources */,
+				318334C22C08E05500A69345 /* LaunchScreen.storyboard in Resources */,
 				3167322F2BF48C960012DDD7 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,6 +448,7 @@
 				316732222BF43EE60012DDD7 /* EmployeeType.swift in Sources */,
 				3167322D2BF4869C0012DDD7 /* EmployeeListCell.swift in Sources */,
 				3105E24C2BFA907200B7EF43 /* EmployeeTabViewModel.swift in Sources */,
+				318334C52C08F8E500A69345 /* EmployeeListCellViewModel.swift in Sources */,
 				316732112BF439D80012DDD7 /* EmployeeDetailView.swift in Sources */,
 				31DAEDF52BF742FE001984FB /* RestfulEmployeeService.swift in Sources */,
 				31DAEDF12BF74057001984FB /* EmployeeService.swift in Sources */,
@@ -459,6 +472,7 @@
 				315BD4062BF5ACAE007D56D5 /* EmployeeListViewModelTests.swift in Sources */,
 				31ABF0842BF5BA8A001D7336 /* EmployeeTabViewModelTests.swift in Sources */,
 				31ABF0822BF5B85D001D7336 /* SettingsViewModelTests.swift in Sources */,
+				318334C72C09388D00A69345 /* EmployeeListCellViewModelTests.swift in Sources */,
 				31ABF0862BF5CA01001D7336 /* EmployeeDetailViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -601,14 +615,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EmployeeDirectory/Preview Content\"";
-				DEVELOPMENT_TEAM = 7B42UT7567;
+				DEVELOPMENT_TEAM = RV3U5W9EBE;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EmployeeDirectory/Supports/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Employee Directory";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -637,14 +652,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EmployeeDirectory/Preview Content\"";
-				DEVELOPMENT_TEAM = 7B42UT7567;
+				DEVELOPMENT_TEAM = RV3U5W9EBE;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EmployeeDirectory/Supports/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Employee Directory";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

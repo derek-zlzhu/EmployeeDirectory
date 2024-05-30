@@ -39,6 +39,10 @@ final internal class ImageManager {
     }
   }
 
+  func resetCache() {
+    cache.resetCache()
+  }
+
   private func downloadImage(from url: URL) async throws -> UIImage? {
     do {
       let (data, _) = try await URLSession.shared.data(from: url)
@@ -71,6 +75,11 @@ fileprivate class ImageMemoryFileCache: NSObject, ImageCache {
     ImageMemoryCache.shared.cacheImage(forKey: url, image: image)
     ImageFileCache.shared.cacheImage(forKey: url, image: image)
   }
+
+  func resetCache() {
+    ImageMemoryCache.shared.resetCache()
+    ImageFileCache.shared.resetCache()
+  }
 }
 
 /// Image cache using NSCache LRU memory cache
@@ -91,6 +100,10 @@ fileprivate class ImageMemoryCache {
 
   func cacheImage(forKey: NSURL, image: UIImage) {
     cache.setObject(image, forKey: forKey)
+  }
+
+  func resetCache() {
+    cache.removeAllObjects()
   }
 }
 
@@ -134,6 +147,15 @@ fileprivate class ImageFileCache {
     cacheOnDiskQueue.async { [weak self] in
       self?.writeImageToDisk(data, for: urlString)
     }
+  }
+
+  func resetCache() {
+    do {
+      let contents = try fileManager.contentsOfDirectory(at: imageCacheDirectory, includingPropertiesForKeys: [])
+      let _ = try contents.compactMap { url in
+        try FileManager.default.removeItem(at: url)
+      }
+    } catch { }
   }
 
   private func createImageCacheDirectory() {

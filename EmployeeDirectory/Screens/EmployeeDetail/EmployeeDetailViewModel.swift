@@ -10,13 +10,20 @@ import UIKit.UIImage
 
 final class EmployeeDetailViewModel: ObservableObject {
 
-  @Published var image: UIImage = ImageManager.placeholder
-  @Published var loading: Bool = false
+  @Published private(set) var image: UIImage = ImageManager.placeholder
+  @Published private(set) var loading: Bool = false
 
-  var employee: Employee?
+  private var employee: Employee?
+  private var initialized = false
 
-  func setEmployee(employee: Employee) {
+  @MainActor
+  func setup(employee: Employee) async {
+    if initialized { return }
+
     self.employee = employee
+    await loadImage(for: employeeLargeImageUrl)
+
+    initialized = true
   }
 
   var employeeName: String { employee?.fullName ?? "" }
@@ -40,6 +47,4 @@ final class EmployeeDetailViewModel: ObservableObject {
       loading = false
     }
   }
-
-
 }
