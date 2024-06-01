@@ -11,12 +11,12 @@ public struct Employee: Decodable {
   let uuid: String
   let fullName: String
   let phoneNumber: String?
-  let emailAddress: String
+  let emailAddress: String?
   let biography: String?
   let photoUrlSmall: String?
   let photoUrlLarge: String?
-  let team: String
-  let employeeType: EmployeeType
+  let team: String?
+  let employeeType: EmployeeType?
 }
 
 extension Employee: Identifiable {

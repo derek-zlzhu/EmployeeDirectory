@@ -11,7 +11,7 @@ struct EmployeeListCell: View {
 
   let employee: Employee
 
-  @StateObject var viewModel = EmployeeListCellViewModel()
+  @StateObject private var viewModel = EmployeeListCellViewModel()
 
   var body: some View {
     HStack(spacing: 10) {
@@ -35,6 +35,14 @@ struct EmployeeListCell: View {
           .foregroundColor(.secondary)
           .fontWeight(.semibold)
       }
+
+      Spacer()
+
+      Image(systemName: "greaterthan")
+        .resizable()
+        .foregroundColor(Color(UIColor.lightGray))
+        .frame(width: 8, height: 12)
+        .padding()
     }
   }
 }

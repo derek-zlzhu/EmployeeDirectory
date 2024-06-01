@@ -9,13 +9,10 @@ import SwiftUI
 
 struct EmployeeListView: View {
 
-  @StateObject var viewModel = EmployeeListViewModel()
+  @StateObject private var viewModel = EmployeeListViewModel()
 
   var body: some View {
     content
-      .task {
-        await viewModel.fetchEmployees()
-      }
       .alert(item: $viewModel.alertItem) { alertItem in
         Alert(title: alertItem.title,
               message: alertItem.message,
@@ -23,33 +20,38 @@ struct EmployeeListView: View {
       }
   }
 
-  var content: some View {
+  private var content: some View {
     NavigationView {
-      if viewModel.isLoading {
-        loadingProgressView
-      } else if viewModel.employListIsEmpty {
-        emptyView
-      } else {
-        listView
+      ScrollView(.vertical) {
+        if viewModel.employListIsEmpty {
+          emptyView.task { await viewModel.fetchEmployees() }
+        } else if viewModel.isLoading {
+          loadingProgressView
+        } else {
+          listView
+        }
       }
+      .padding()
+      .refreshable { await viewModel.refreshEmployees() }
+      .navigationTitle("Employees")
     }
     .navigationViewStyle(.stack)
   }
 
-  var listView: some View {
-    List(viewModel.filteredEmployees) { employee in
-      NavigationLink(destination: EmployeeDetailView(employee: employee)) {
-        EmployeeListCell(employee: employee)
+  private var listView: some View {
+    let columns = [ GridItem(.flexible(), alignment: .leading) ]
+
+    return LazyVGrid(columns: columns, spacing: 20) {
+      ForEach(viewModel.filteredEmployees) { employee in
+        NavigationLink(destination: EmployeeDetailView(employee: employee)) {
+          EmployeeListCell(employee: employee)
+        }
       }
     }
-    .refreshable {
-      await viewModel.refreshEmployees()
-    }
     .searchable(text: $viewModel.textToSearch, placement: .navigationBarDrawer(displayMode: .always))
-    .navigationTitle("Employees")
   }
 
-  var emptyView: some View {
+  private var emptyView: some View {
     VStack(alignment: .center, spacing: 30) {
       Image("emptyList")
         .resizable()
@@ -64,15 +66,13 @@ struct EmployeeListView: View {
       Spacer()
     }
     .padding(30)
-    .navigationTitle("Employees")
   }
 
-  var loadingProgressView: some View {
+  private var loadingProgressView: some View {
     ProgressView()
       .progressViewStyle(CircularProgressViewStyle(tint: .gray))
       .scaleEffect(2)
       .offset(y: -40)
-      .navigationTitle("Employees")
   }
 }
 

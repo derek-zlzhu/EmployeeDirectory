@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EmployeeDetailView: View {
 
-  @StateObject var viewModel = EmployeeDetailViewModel()
+  @StateObject private var viewModel = EmployeeDetailViewModel()
 
   let employee: Employee
 

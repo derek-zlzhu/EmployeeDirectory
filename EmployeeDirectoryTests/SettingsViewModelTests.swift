@@ -23,7 +23,7 @@ final class SettingsViewModelTests: XCTestCase {
   }
 
   func testDisplayName() {
-    XCTAssertEqual(sut.displayName, "Employee Directory")
+    XCTAssertEqual(sut.displayName, "E Directory")
   }
 
   func testBundleIdentifier() {

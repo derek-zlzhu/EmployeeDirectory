@@ -23,7 +23,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EmployeeDirectory" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Employee Directory" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
                                 <rect key="frame" x="0.0" y="263.66666666666669" width="393" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <color key="textColor" name="AccentColor"/>
@@ -52,7 +52,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="242.66667175292969" height="242.66667175292969"/>
+        <image name="logo" width="240" height="240"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.51764705882352946" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

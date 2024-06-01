@@ -12,12 +12,10 @@ final class EmployeeListViewModel: ObservableObject {
   let employeeService: EmployeeService
 
   @Published private(set) var employees: [Employee] = []
-  @Published private(set) var isLoading = true
+  @Published private(set) var isLoading = false
 
   @Published var textToSearch = ""
   @Published var alertItem: AlertItem?
-
-  private var loaded = false
 
   init(
     employeeService: EmployeeService = RestfulEmployeeService()
@@ -43,15 +41,12 @@ final class EmployeeListViewModel: ObservableObject {
 
   @MainActor
   func fetchEmployees() async {
-    if loaded { return }
-
     textToSearch = ""
     isLoading = true
 
     do {
       employees = try await employeeService.fetchEmployees()
       isLoading = false
-      loaded = true
     } catch {
       if let edError = error as? EDError {
         switch edError {
@@ -66,13 +61,11 @@ final class EmployeeListViewModel: ObservableObject {
         alertItem = AlertContext.invalidResponse
       }
       isLoading = false
-      loaded = true
     }
   }
 
   @MainActor
   func refreshEmployees() async {
-    loaded = false
     await fetchEmployees()
   }
 }

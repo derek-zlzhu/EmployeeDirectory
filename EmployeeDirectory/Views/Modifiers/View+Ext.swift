@@ -12,4 +12,9 @@ extension View {
   func brandTextStyle() -> some View {
     modifier(TextModifier())
   }
+
+  func debug() -> Self {
+    print(Mirror(reflecting: self).subjectType)
+    return self
+  }
 }

@@ -28,7 +28,7 @@ final class EmployeeDetailViewModel: ObservableObject {
 
   var employeeName: String { employee?.fullName ?? "" }
   var employeeTeam: String { employee?.team ?? "" }
-  var employeePosition: String { employee?.employeeType.position ?? "" }
+  var employeePosition: String { employee?.employeeType?.position ?? "" }
   var employeeBio: String { employee?.biography ?? "" }
   var employeeLargeImageUrl: String { employee?.photoUrlLarge ?? "" }
 
