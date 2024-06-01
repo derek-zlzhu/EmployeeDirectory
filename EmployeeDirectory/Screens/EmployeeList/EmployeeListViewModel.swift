@@ -35,7 +35,7 @@ final class EmployeeListViewModel: ObservableObject {
     }
   }
 
-  var employListIsEmpty: Bool {
+  var listIsEmpty: Bool {
     employees.isEmpty
   }
 

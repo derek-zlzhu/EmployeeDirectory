@@ -22,57 +22,51 @@ struct EmployeeListView: View {
 
   private var content: some View {
     NavigationView {
-      ScrollView(.vertical) {
-        if viewModel.employListIsEmpty {
-          emptyView.task { await viewModel.fetchEmployees() }
-        } else if viewModel.isLoading {
-          loadingProgressView
-        } else {
-          listView
-        }
+      if viewModel.listIsEmpty {
+        emptyView.task { await viewModel.fetchEmployees() }
+      } else {
+        listView
       }
-      .padding()
-      .refreshable { await viewModel.refreshEmployees() }
-      .navigationTitle("Employees")
     }
     .navigationViewStyle(.stack)
   }
 
   private var listView: some View {
-    let columns = [ GridItem(.flexible(), alignment: .leading) ]
-
-    return LazyVGrid(columns: columns, spacing: 20) {
-      ForEach(viewModel.filteredEmployees) { employee in
-        NavigationLink(destination: EmployeeDetailView(employee: employee)) {
-          EmployeeListCell(employee: employee)
-        }
+    List(viewModel.filteredEmployees) { employee in
+      NavigationLink(destination: EmployeeDetailView(employee: employee)) {
+        EmployeeListCell(employee: employee)
       }
     }
+    .refreshable { await viewModel.refreshEmployees() }
     .searchable(text: $viewModel.textToSearch, placement: .navigationBarDrawer(displayMode: .always))
+    .navigationTitle("Employees")
   }
 
   private var emptyView: some View {
-    VStack(alignment: .center, spacing: 30) {
-      Image("emptyList")
-        .resizable()
-        .aspectRatio(contentMode: .fit)
-        .frame(maxWidth: .infinity)
-        .cornerRadius(8)
+    ScrollView(.vertical) {
+      VStack(alignment: .center, spacing: 30) {
+        if viewModel.isLoading {
+          ProgressView()
+            .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+            .scaleEffect(2)
+            .padding()
+        } else {
+          Image("emptyList")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(maxWidth: .infinity)
+            .cornerRadius(8)
 
-      Text("There's no employee data available at the moment, please make sure network is connected and try again later.")
-        .font(.title3)
-        .foregroundColor(.secondary)
-
-      Spacer()
+          Text("There's no employee data available at the moment, please make sure network is connected and try again later.")
+            .font(.title3)
+            .foregroundColor(.secondary)
+        }
+      }
+      .padding(30)
     }
-    .padding(30)
-  }
-
-  private var loadingProgressView: some View {
-    ProgressView()
-      .progressViewStyle(CircularProgressViewStyle(tint: .gray))
-      .scaleEffect(2)
-      .offset(y: -40)
+    .refreshable { await viewModel.refreshEmployees() }
+    .searchable(text: $viewModel.textToSearch, placement: .navigationBarDrawer(displayMode: .always))
+    .navigationTitle("Employees")
   }
 }
 
