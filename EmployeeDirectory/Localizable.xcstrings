@@ -33,6 +33,9 @@
         }
       }
     },
+    "Bundle Info: " : {
+
+    },
     "Bundle Version: " : {
       "localizations" : {
         "en" : {
@@ -64,6 +67,9 @@
           }
         }
       }
+    },
+    "Creator: " : {
+
     },
     "Display Name: " : {
       "localizations" : {

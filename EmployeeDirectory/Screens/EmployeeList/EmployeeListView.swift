@@ -32,9 +32,13 @@ struct EmployeeListView: View {
   }
 
   private var listView: some View {
-    List(viewModel.filteredEmployees) { employee in
-      NavigationLink(destination: EmployeeDetailView(employee: employee)) {
-        EmployeeListCell(employee: employee)
+    ScrollView {
+      LazyVStack {
+        ForEach(viewModel.filteredEmployees) { employee in
+          NavigationLink(destination: EmployeeDetailView(employee: employee)) {
+            EmployeeListCell(employee: employee).padding(.horizontal)
+          }
+        }
       }
     }
     .refreshable { await viewModel.refreshEmployees() }

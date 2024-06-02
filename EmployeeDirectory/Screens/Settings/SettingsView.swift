@@ -13,20 +13,22 @@ struct SettingsView: View {
 
   var body: some View {
     NavigationView {
-      ScrollView(.vertical) {
-        VStack(alignment: .leading, spacing: 20) {
+      List {
+        Section(header: Text("Bundle Info: ")) {
           KeyValueItemView(itemKey: Text("Display Name: "), itemValue: Text(viewModel.displayName))
           KeyValueItemView(itemKey: Text("Bundle Identifier: "), itemValue: Text(viewModel.bundleIdentifier))
           KeyValueItemView(itemKey: Text("Bundle Version: "), itemValue: Text(viewModel.bundleVersion))
-          KeyValueItemView(itemKey: Text("Creator Name: "), itemValue: Text(viewModel.creatorName))
-
-          resetCacheView
-
-          Spacer()
         }
-        .padding(.horizontal, 22)
+
+        Section(header: Text("Creator: ")) {
+          KeyValueItemView(itemKey: Text("Creator Name: "), itemValue: Text(viewModel.creatorName))
+        }
+
+        Section {
+          resetCacheView
+        }
       }
-      .padding(.top, 22)
+      .listStyle(.insetGrouped)
       .navigationTitle("Settings")
     }
     .navigationViewStyle(.stack)
@@ -41,7 +43,6 @@ struct SettingsView: View {
     } label: {
       Text("Reset local cache")
     }
-    .padding(.top, 44)
     .alert(item: $viewModel.alertItem) { alertItem in
       Alert(title: alertItem.title,
             message: alertItem.message,
