@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MockEmployeeService: EmployeeService {
+struct MockEmployeeService: EmployeeServiceType {
 
   func fetchEmployees() async throws -> [Employee] {
     let employees: [Employee] = [
@@ -18,7 +18,6 @@ struct MockEmployeeService: EmployeeService {
 
     return employees
   }
-
 
   static let janeDoe = Employee(
     uuid: UUID().uuidString,
@@ -43,26 +42,26 @@ struct MockEmployeeService: EmployeeService {
     employeeType: .contractor)
 }
 
-struct MockEmployeeInvalidURLService: EmployeeService {
+struct MockEmployeeInvalidURLService: EmployeeServiceType {
   func fetchEmployees() async throws -> [Employee] {
     throw EDError.invalidURL
   }
 }
 
-struct MockEmployeeInvalidDataService: EmployeeService {
+struct MockEmployeeInvalidDataService: EmployeeServiceType {
   func fetchEmployees() async throws -> [Employee] {
     throw EDError.invalidData
   }
 }
 
-struct MockEmployeeInvalidResponseService: EmployeeService {
+struct MockEmployeeInvalidResponseService: EmployeeServiceType {
   func fetchEmployees() async throws -> [Employee] {
     throw EDError.invalidResponse
   }
 }
 
-extension String: Error {}
-struct MockEmployeeGeneralErrorService: EmployeeService {
+extension String: @retroactive Error {}
+struct MockEmployeeGeneralErrorService: EmployeeServiceType {
   func fetchEmployees() async throws -> [Employee] {
     throw "General Error"
   }

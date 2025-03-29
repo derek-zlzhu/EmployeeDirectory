@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+private let rainbowDebugColors: [Color] = [
+  .purple, .blue, .green, .yellow, .orange, .red, .pink
+]
+
 extension View {
 
   func brandTextStyle() -> some View {
@@ -16,5 +20,9 @@ extension View {
   func debug() -> Self {
     print(Mirror(reflecting: self).subjectType)
     return self
+  }
+
+  func rainbowDebug() -> some View {
+    self.background(rainbowDebugColors.randomElement())
   }
 }

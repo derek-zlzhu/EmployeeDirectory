@@ -7,9 +7,10 @@
 
 import Foundation
 
+@MainActor
 final class EmployeeListViewModel: ObservableObject {
 
-  let employeeService: EmployeeService
+  let employeeService: EmployeeServiceType
 
   @Published private(set) var employees: [Employee] = []
   @Published private(set) var isLoading = false
@@ -17,9 +18,7 @@ final class EmployeeListViewModel: ObservableObject {
   @Published var textToSearch = ""
   @Published var alertItem: AlertItem?
 
-  init(
-    employeeService: EmployeeService = RestfulEmployeeService()
-  ) {
+  init(employeeService: EmployeeServiceType = EmployeeService()) {
     self.employeeService = employeeService
   }
 
@@ -39,7 +38,6 @@ final class EmployeeListViewModel: ObservableObject {
     employees.isEmpty
   }
 
-  @MainActor
   func fetchEmployees() async {
     textToSearch = ""
     isLoading = true
@@ -64,7 +62,6 @@ final class EmployeeListViewModel: ObservableObject {
     }
   }
 
-  @MainActor
   func refreshEmployees() async {
     await fetchEmployees()
   }

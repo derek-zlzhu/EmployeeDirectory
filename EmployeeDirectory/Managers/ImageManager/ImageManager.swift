@@ -8,9 +8,9 @@
 import Foundation
 import UIKit.UIImage
 
-final internal class ImageManager {
+final class ImageManager {
 
-  static let shared = ImageManager()
+  nonisolated(unsafe) static let shared = ImageManager()
   static let placeholder: UIImage = UIImage(named: "placeholder")!
 
   private var cache: ImageCache
@@ -56,7 +56,7 @@ final internal class ImageManager {
 }
 
 /// Image Cache support configable memory and disk file sizes
-fileprivate class ImageMemoryFileCache: NSObject, ImageCache {
+final class ImageMemoryFileCache: NSObject, ImageCache {
 
   func getImage(from url: NSURL) -> UIImage? {
 
@@ -83,13 +83,11 @@ fileprivate class ImageMemoryFileCache: NSObject, ImageCache {
 }
 
 /// Image cache using NSCache LRU memory cache
-fileprivate class ImageMemoryCache {
-
-  static let shared = ImageMemoryCache(ConfigsManager.shared.appConfig.imageMemoryCacheCount)
-
+final class ImageMemoryCache: @unchecked Sendable {
+  static let shared = ImageMemoryCache()
   private var cache: NSCache<NSURL, UIImage>
 
-  private init(_ countLimit: Int) {
+  private init(_ countLimit: Int = 10) {
     self.cache = NSCache<NSURL, UIImage>()
     self.cache.countLimit = countLimit
   }
@@ -108,9 +106,8 @@ fileprivate class ImageMemoryCache {
 }
 
 /// Image cache using disk files
-fileprivate class ImageFileCache {
-
-  static let shared = ImageFileCache(maximumCacheSize: ConfigsManager.shared.appConfig.imageFileCacheSize)
+final class ImageFileCache: @unchecked Sendable {
+  static let shared = ImageFileCache()
 
   private let maximumCacheSize: Int
   private let cacheOnDiskQueue: DispatchQueue
@@ -121,7 +118,7 @@ fileprivate class ImageFileCache {
       .appendingPathComponent("ImageCache")
   }
 
-  private init(maximumCacheSize: Int, fileManager: FileManager = .default) {
+  private init(maximumCacheSize: Int = 536870912, fileManager: FileManager = .default) {
     self.maximumCacheSize = maximumCacheSize
     self.fileManager = fileManager
 

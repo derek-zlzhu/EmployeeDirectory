@@ -16,7 +16,7 @@ final class SettingsViewModel: ObservableObject {
   @Published private(set) var creatorName: String = ""
 
   @Published var alertItem: AlertItem?
-
+  
   func retriveBundleInfos() {
     if let name = readFromInfoDictionary(withKey: "CFBundleDisplayName") {
       displayName = name

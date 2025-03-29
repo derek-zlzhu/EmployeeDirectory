@@ -8,6 +8,7 @@
 import Foundation
 import UIKit.UIImage
 
+@MainActor
 final class EmployeeDetailViewModel: ObservableObject {
 
   @Published private(set) var image: UIImage = ImageManager.placeholder
@@ -16,7 +17,6 @@ final class EmployeeDetailViewModel: ObservableObject {
   private var employee: Employee?
   private var initialized = false
 
-  @MainActor
   func setup(employee: Employee) async {
     if initialized { return }
 
@@ -32,7 +32,6 @@ final class EmployeeDetailViewModel: ObservableObject {
   var employeeBio: String { employee?.biography ?? "" }
   var employeeLargeImageUrl: String { employee?.photoUrlLarge ?? "" }
 
-  @MainActor
   func loadImage(for urlString: String?) async {
     guard let urlString = urlString else { return }
 

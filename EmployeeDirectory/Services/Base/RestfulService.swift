@@ -20,7 +20,7 @@ extension RestfulService {
 
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
-    request.timeoutInterval = TimeInterval(ConfigsManager.shared.appConfig.requestTimeout)
+    request.timeoutInterval = TimeInterval(await ConfigsManager.shared.appConfig.requestTimeout)
 
     let (data, _) = try await URLSession.shared.data(for: request)
     do {

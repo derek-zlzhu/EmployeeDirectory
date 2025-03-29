@@ -7,6 +7,12 @@
 
 import Foundation
 
-protocol EmployeeService {
-  func fetchEmployees() async throws -> [Employee]
+struct EmployeeService: RestfulService, EmployeeServiceType {
+
+  func fetchEmployees() async throws -> [Employee] {
+    let url = URL(string: await ConfigsManager.shared.appConfig.apiServiceUrl)
+    let employeeResponse: EmployeeResponse = try await requestRestfulJson(url: url)
+
+    return employeeResponse.employees
+  }
 }

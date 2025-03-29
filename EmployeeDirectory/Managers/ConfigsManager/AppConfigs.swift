@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class AppConfigs {
+public struct AppConfigs: Sendable {
 
   // MARK: - App Setting from plist -
 

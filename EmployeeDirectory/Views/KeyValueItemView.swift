@@ -21,8 +21,8 @@ internal struct KeyValueItemView: View {
       itemValue
         .font(.subheadline)
         .fontWeight(.regular)
-        .lineLimit(1)
-        .minimumScaleFactor(0.5)
+        .lineLimit(2)
+        .minimumScaleFactor(0.8)
 
       Spacer()
     }

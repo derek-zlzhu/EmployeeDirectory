@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Employee: Decodable {
+public struct Employee: Decodable, Sendable {
   let uuid: String
   let fullName: String
   let phoneNumber: String?

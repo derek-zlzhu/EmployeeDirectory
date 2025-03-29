@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum EmployeeType: String, Decodable {
+public enum EmployeeType: String, Decodable, Sendable {
   case fullTime = "FULL_TIME"
   case partTime = "PART_TIME"
   case contractor = "CONTRACTOR"

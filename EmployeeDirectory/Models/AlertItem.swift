@@ -7,35 +7,15 @@
 
 import SwiftUI
 
-internal struct AlertItem: Identifiable {
-
+struct AlertItem: Identifiable, Sendable {
   let id = UUID()
-  let title: Text
-  let message: Text
-  let dismissButton: Alert.Button
-
-  init(
-    title: Text = Text("Error"), 
-    message: Text = Text("Something is running unexpected. Please try again sometime later."),
-    dismissButton: Alert.Button = .default(Text("OK"))
-  ) {
-    self.title = title
-    self.message = message
-    self.dismissButton = dismissButton
-  }
+  let title: String
+  let message: String
 }
 
-internal struct AlertContext {
-
-  // MARK: - Network Alerts
-
-  static let invalidURL = AlertItem(title: Text("Server Error"), message: Text("There was an issue connecting to the server."))
-
-  static let invalidData = AlertItem(title: Text("Server Error"), message: Text("The data received from the server was invalid."))
-
-  static let invalidResponse = AlertItem(title: Text("Server Error"), message: Text("Invalid response from the server."))
-
-  // MARK - General Alerts
-
-  static let localCacheCleared = AlertItem(title: Text("Info"), message: Text("Local cache cleared."))
+struct AlertContext {
+  static let invalidURL = AlertItem(title: "Server Error", message: "There was an issue connecting to the server.")
+  static let invalidData = AlertItem(title: "Server Error", message: "The data received from the server was invalid.")
+  static let invalidResponse = AlertItem(title: "Server Error", message: "Invalid response from the server.")
+  static let localCacheCleared = AlertItem(title: "Info", message: "Local cache cleared.")
 }

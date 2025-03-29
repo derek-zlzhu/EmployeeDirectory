@@ -44,9 +44,9 @@ struct SettingsView: View {
       Text("Reset local cache")
     }
     .alert(item: $viewModel.alertItem) { alertItem in
-      Alert(title: alertItem.title,
-            message: alertItem.message,
-            dismissButton: alertItem.dismissButton)
+      Alert(title: Text(alertItem.title),
+            message: Text(alertItem.message),
+            dismissButton: .default(Text("OK")))
     }
   }
 }

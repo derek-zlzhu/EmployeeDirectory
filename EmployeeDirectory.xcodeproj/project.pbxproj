@@ -41,9 +41,9 @@
 		31ABF0822BF5B85D001D7336 /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ABF0812BF5B85D001D7336 /* SettingsViewModelTests.swift */; };
 		31ABF0842BF5BA8A001D7336 /* EmployeeTabViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ABF0832BF5BA8A001D7336 /* EmployeeTabViewModelTests.swift */; };
 		31ABF0862BF5CA01001D7336 /* EmployeeDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ABF0852BF5CA01001D7336 /* EmployeeDetailViewModelTests.swift */; };
-		31DAEDF12BF74057001984FB /* EmployeeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAEDF02BF74057001984FB /* EmployeeService.swift */; };
+		31DAEDF12BF74057001984FB /* EmployeeServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAEDF02BF74057001984FB /* EmployeeServiceType.swift */; };
 		31DAEDF32BF740DB001984FB /* RestfulService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAEDF22BF740DB001984FB /* RestfulService.swift */; };
-		31DAEDF52BF742FE001984FB /* RestfulEmployeeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAEDF42BF742FE001984FB /* RestfulEmployeeService.swift */; };
+		31DAEDF52BF742FE001984FB /* EmployeeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAEDF42BF742FE001984FB /* EmployeeService.swift */; };
 		31DAEDF72BF7476D001984FB /* MockEmployeeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAEDF62BF7476D001984FB /* MockEmployeeService.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,9 +97,9 @@
 		31ABF0832BF5BA8A001D7336 /* EmployeeTabViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTabViewModelTests.swift; sourceTree = "<group>"; };
 		31ABF0852BF5CA01001D7336 /* EmployeeDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDetailViewModelTests.swift; sourceTree = "<group>"; };
 		31D500992BF5B4D7004A8288 /* EmployeeDirectory.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EmployeeDirectory.xctestplan; sourceTree = "<group>"; };
-		31DAEDF02BF74057001984FB /* EmployeeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeService.swift; sourceTree = "<group>"; };
+		31DAEDF02BF74057001984FB /* EmployeeServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeServiceType.swift; sourceTree = "<group>"; };
 		31DAEDF22BF740DB001984FB /* RestfulService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestfulService.swift; sourceTree = "<group>"; };
-		31DAEDF42BF742FE001984FB /* RestfulEmployeeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestfulEmployeeService.swift; sourceTree = "<group>"; };
+		31DAEDF42BF742FE001984FB /* EmployeeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeService.swift; sourceTree = "<group>"; };
 		31DAEDF62BF7476D001984FB /* MockEmployeeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEmployeeService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,8 +132,8 @@
 		3105E2362BFA65E800B7EF43 /* EmployeeService */ = {
 			isa = PBXGroup;
 			children = (
-				31DAEDF02BF74057001984FB /* EmployeeService.swift */,
-				31DAEDF42BF742FE001984FB /* RestfulEmployeeService.swift */,
+				31DAEDF02BF74057001984FB /* EmployeeServiceType.swift */,
+				31DAEDF42BF742FE001984FB /* EmployeeService.swift */,
 				31DAEDF62BF7476D001984FB /* MockEmployeeService.swift */,
 			);
 			path = EmployeeService;
@@ -376,7 +376,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					316731DB2BF437F50012DDD7 = {
 						CreatedOnToolsVersion = 15.2;
@@ -450,8 +450,8 @@
 				3105E24C2BFA907200B7EF43 /* EmployeeTabViewModel.swift in Sources */,
 				318334C52C08F8E500A69345 /* EmployeeListCellViewModel.swift in Sources */,
 				316732112BF439D80012DDD7 /* EmployeeDetailView.swift in Sources */,
-				31DAEDF52BF742FE001984FB /* RestfulEmployeeService.swift in Sources */,
-				31DAEDF12BF74057001984FB /* EmployeeService.swift in Sources */,
+				31DAEDF52BF742FE001984FB /* EmployeeService.swift in Sources */,
+				31DAEDF12BF74057001984FB /* EmployeeServiceType.swift in Sources */,
 				3105E2402BFA6D8100B7EF43 /* Text+Ext.swift in Sources */,
 				31DAEDF32BF740DB001984FB /* RestfulService.swift in Sources */,
 				3136A59C2BF51E7D0058F7AD /* ImageCache.swift in Sources */,
@@ -548,6 +548,8 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -603,6 +605,8 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -612,10 +616,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EmployeeDirectory/Preview Content\"";
-				DEVELOPMENT_TEAM = RV3U5W9EBE;
+				DEVELOPMENT_TEAM = 7B42UT7567;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EmployeeDirectory/Supports/Info.plist;
@@ -634,11 +639,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jbrothers.EmployeeDirectory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -649,10 +656,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EmployeeDirectory/Preview Content\"";
-				DEVELOPMENT_TEAM = RV3U5W9EBE;
+				DEVELOPMENT_TEAM = 7B42UT7567;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EmployeeDirectory/Supports/Info.plist;
@@ -671,11 +679,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jbrothers.EmployeeDirectory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -684,7 +694,6 @@
 		316732042BF437F70012DDD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -708,7 +717,6 @@
 		316732052BF437F70012DDD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

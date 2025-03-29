@@ -8,6 +8,7 @@
 import Foundation
 import UIKit.UIImage
 
+@MainActor
 final class EmployeeListCellViewModel: ObservableObject {
 
   @Published private(set) var image: UIImage = ImageManager.placeholder
@@ -18,7 +19,6 @@ final class EmployeeListCellViewModel: ObservableObject {
   private var employee: Employee?
   private var initialized = false
 
-  @MainActor
   func setup(employee: Employee) async {
     if initialized { return }
 
@@ -34,12 +34,11 @@ final class EmployeeListCellViewModel: ObservableObject {
     do {
       let downloadedImage = try await ImageManager.shared.getImage(from: urlString)
       if let downloadedImage = downloadedImage {
-        await updateImage(image: downloadedImage)
+        updateImage(image: downloadedImage)
       }
     } catch { }
   }
 
-  @MainActor
   private func updateImage(image: UIImage) {
     self.image = image
   }

@@ -7,13 +7,13 @@
 
 import Foundation
 
-public class ConfigsManager {
+public actor ConfigsManager {
 
   static let shared = ConfigsManager()
 
   private init() {}
 
-  lazy var appConfig: AppConfigs = {
+  var appConfig: AppConfigs {
     var config = AppConfigs()
 
     if let settings = contentsOfFile(plistName: kAppSettingsPListFileNameKey) {
@@ -30,10 +30,9 @@ public class ConfigsManager {
     }
 
     return config
-  }()
+  }
 
   // MARK: - Help methods -
-
   private let kAppSettingsPListFileNameKey          = "Settings"
 
   private let kAppSettingsApiServiceUrlKey          = "ApiServiceUrl"

@@ -46,7 +46,3 @@ struct EmployeeListCell: View {
     }
   }
 }
-
-#Preview {
-  EmployeeListCell(employee: Employee.sharedPreview)
-}
